@@ -1,0 +1,46 @@
+:root{
+  --first: #2F4F30;
+  --second: white;
+  --third: black;
+}
+
+/*TODO::Este pedazo de código es para normalizar el uso de los REM y usar el CSS Box Model*/
+html{
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body{
+  margin: 0rem;
+  padding: 0rem;
+  background-color: var(--first);
+  color: var(--second);
+}
+
+.title{
+  text-align: center;
+  background-color: var(--third);
+  color: var(--second);
+  padding: 2rem;
+  font-size: 2.5rem;
+}
+
+.playing-card{
+  position: relative;
+  width: 12rem;
+  left: 10rem;
+  margin-left: -7.5rem;
+}
+
+#playing-cards-player,
+#playing-cards-bot{
+  height: 24rem;
+}
