@@ -104,10 +104,13 @@ const stopPlayerTurn = () => {
 }
 
 const showWinner = () => {
-    if(playerPoints < botPoints){
-        alert('¡Felicidades, has ganado :D!');
+    if(botPoints === 21){
+        alert('Has perdido :(, ¡intenta nuevamente!');
     }else if(playerPoints == botPoints){
         alert('¡Ha habido un empate o.o!');
+    }else if(playerPoints < botPoints){
+        alert('¡Felicidades, has ganado :D!');
+
     }else{
         alert('Has perdido :(, ¡intenta nuevamente!');
     }
