@@ -188,8 +188,8 @@ const blackjackModule = (() => {
 
     numPlayersInput.addEventListener('input', () => {
         const value = numPlayersInput.value;
-        const isValid = /^[2-7]$/.test(value);
-        numPlayersInput.value = (isValid ? value : 2);
+        const isValid = /^(?:[2-7]|)$/.test(value);
+        numPlayersInput.value = (isValid || value === '' ? value : '');
     });
 
     return {

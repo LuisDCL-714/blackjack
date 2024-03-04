@@ -19,6 +19,17 @@
             <div class="rule">
                 <div>The dealer must win with 21 points or close</div>
             </div>
+            <div class="actions">
+                <div class="new-game">
+                    <label for="num-players">Núm. jugadores</label>
+                    <input class="input" id="num-players" type="number" min="2" max="7" value="2">
+                    <button id="btn-new-game" class="btn btn-danger">Nuevo juego</button>
+                </div>
+                <div class="btn-actions">
+                    <button disabled class="btn" id="btn-take-playing-card">Agarrar carta</button>
+                    <button disabled class="btn" id="btn-stop-game">Detener jugada</button>
+                </div>
+            </div>
             <div id="player-container">
                 <div class="box">
                     <p>Player - <small>0</small></p>
@@ -31,17 +42,6 @@
                     <p>CPU 1 - <small>0</small></p>
                     <div class="playing-cards">
                     </div>
-                </div>
-            </div>
-            <div class="actions">
-                <div class="new-game">
-                    <label for="num-players">Núm. jugadores</label>
-                    <input class="input" id="num-players" type="number" min="2" max="7" value="2">
-                    <button id="btn-new-game" class="btn btn-danger">Nuevo juego</button>
-                </div>
-                <div class="btn-actions">
-                    <button disabled class="btn" id="btn-take-playing-card">Agarrar carta</button>
-                    <button disabled class="btn" id="btn-stop-game">Detener jugada</button>
                 </div>
             </div>
         </div>          
