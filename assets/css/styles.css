@@ -136,6 +136,10 @@ button {
   font-family: var(--fontFamily);
 }
 
+.btn.disabled, .btn:disabled{
+  opacity: .65;
+}
+
 .actions label {
   color: var(--third);
   font-size: 1.5rem;
