@@ -8,47 +8,51 @@
         <link rel="preload" href="assets/css/normalize.css" as="style">
         <link rel="preload" href="assets/css/styles.css" as="style">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
         <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
-        <div class="container col-12">
-            <header class="title">
-                Blackjack
-            </header>
-    
-            <div class="row mt-2">
-                <div class="col text-center">
+        <div class="main">
+            <div class="title">
+                <h1>BLACKJACK</h1>
+            </div>
+            <div class="rule">
+                <div>The dealer must win with 21 points or close</div>
+            </div>
+            <div id="player-container">
+                <div class="box">
+                    <p>Player - <small>0</small></p>
+                    <div class="playing-cards">
+                    </div>
+                </div>
+            </div>
+            <div id="cpu-players-container">
+                <div class="box">
+                    <p>CPU 1 - <small>0</small></p>
+                    <div class="playing-cards">
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="new-game">
+                    <label for="num-players">Núm. jugadores</label>
+                    <input class="input" id="num-players" type="number" min="2" max="7" value="2">
                     <button id="btn-new-game" class="btn btn-danger">Nuevo juego</button>
-                    <button id="btn-take-playing-card" class="btn btn-primary">Pedir carta</button>
-                    <button id="btn-stop-game" class="btn btn-primary">Detener</button>
+                </div>
+                <div class="btn-actions">
+                    <button disabled class="btn" id="btn-take-playing-card">Agarrar carta</button>
+                    <button disabled class="btn" id="btn-stop-game">Detener jugada</button>
                 </div>
             </div>
-    
-            <div class="row container">
-                <div class="col">
-            
-                    <h2>Jugador - <small>0</small></h2>
-            
-                    <div id="playing-cards-player">
-                    </div>
-                </div>
-            </div>
-    
-            <div class="row container">
-                <div class="col">
-            
-                    <h2>Computadora - <small>0</small></h2>
-            
-                    <div id="playing-cards-bot">
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>          
 
         <script src="assets/js/underscore-min.js"></script>
         <script src="assets/js/juego.js"></script>
+        <script>
+            document.getElementById('btn-new-game').addEventListener('click', () => {
+                const numParticipants = document.getElementById('num-players').value;
+                blackjackModule.startGame(parseInt(numParticipants));
+            });
+        </script>
     </body>
 </html>
