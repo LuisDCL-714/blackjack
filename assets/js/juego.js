@@ -106,7 +106,7 @@ const blackjackModule = (() => {
      */
     const makePlayingCard = (playingCard, turn) => {
         const imgPlayingCard = document.createElement('img');
-        imgPlayingCard.src = `/assets/cartas/${playingCard}.png`;
+        imgPlayingCard.src = `assets/cartas/${playingCard}.png`;
         imgPlayingCard.alt = `Carta ${playingCard}`;
         divPlayingCards[turn].append(imgPlayingCard);
     }
