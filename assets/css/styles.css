@@ -58,16 +58,21 @@ body {
   font-size: 1.5rem;
 }
 
-#cpu-players-container {
-  display: grid;
+.btn-actions{
+  display: flex;
+  gap: 2rem;;
+}
+
+#cpu-players-container {  
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.1rem;
-  grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: repeat(1, 1fr);
 }
 
 #player-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
   justify-content: center;
   gap: 0.4rem;
   margin: 1rem 0rem 1rem 0rem;
@@ -100,6 +105,24 @@ body {
   justify-content: center;
 }
 
+@keyframes appearFromLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes appearFromTop {
+  from { transform: translateY(-100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#player-container .box .playing-cards img {
+  animation: appearFromLeft 0.7s ease-out;
+}
+
+#cpu-players-container .box .playing-cards img {
+  animation: appearFromTop 0.7s ease-out;
+}
+
 .box img {
   inset: 0;
   object-fit: cover;
@@ -115,7 +138,7 @@ body {
   margin: 1rem 0rem;
 }
 
-button {
+.actions button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -134,6 +157,28 @@ button {
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   cursor: pointer;
   font-family: var(--fontFamily);
+}
+
+#player-container button{
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: var(--fontFamily);
+  cursor: pointer;
+}
+
+#player-container button:disabled{
+  cursor: auto;
+  opacity: .65;
+}
+
+#btn-stop-game{
+  width: 100%;
 }
 
 .btn.disabled, .btn:disabled{
@@ -172,10 +217,11 @@ button {
 @media (min-width: 425px) {
   #cpu-players-container {
     gap: 0.5rem;
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-columns: repeat(2, 1fr);
   }
 
+  #player-container{
+    grid-template-columns: repeat(2,1fr);
+  }
   .rule div {
     font-size: 2rem;
   }
@@ -185,10 +231,7 @@ button {
 @media (min-width: 768px) {
   #cpu-players-container {
     gap: 1rem;
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-columns: repeat(3, 1fr);
   }
-
   .rule div {
     font-size: 2rem;
   }
@@ -198,10 +241,7 @@ button {
 @media (min-width: 1240px) {
   #cpu-players-container {
     gap: 2rem;
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-columns: repeat(6, 1fr);
   }
-
   .rule div {
     font-size: 2rem;
   }
@@ -211,10 +251,7 @@ button {
 @media (min-width: 1440px) {
   #cpu-players-container {
     gap: 2.5rem;
-    grid-template-rows: repeat(1, 1fr);
-    grid-template-columns: repeat(6, 1fr);
   }
-
   .rule div {
     font-size: 2rem;
   }

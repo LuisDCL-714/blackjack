@@ -5,11 +5,13 @@ const blackjackModule = (() => {
         playersPoints          = [],
         numParticipants        = document.getElementById('num-players').value,
         pointsHTML             = document.querySelectorAll('small'),
-        divPlayingCards        = document.querySelectorAll('.playing-cards')
+        divPlayingCards        = document.querySelectorAll('.playing-cards'),
+        stopGame               = false
     const types                = ['C','D','H','S'],
           specials             = ['A','J','Q','K'],
           btnTakePlayingCard   = document.querySelector('#btn-take-playing-card'),
           btnStopGame          = document.querySelector('#btn-stop-game'),
+          btnContinueGame      = document.querySelector('#btn-continue-game'),
           btnNewGame           = document.querySelector('#btn-new-game'),
           numPlayersInput      = document.getElementById('num-players');
 
@@ -23,6 +25,7 @@ const blackjackModule = (() => {
         playersPoints               = [];
         btnTakePlayingCard.disabled = false;
         btnStopGame.disabled        = false;
+        stopGame                    = false;
 
         for( let i = 0; i< numPlayers; i++ ) {
             playersPoints.push(0);
@@ -54,6 +57,7 @@ const blackjackModule = (() => {
     const stopPlayerTurn = (playerPoints) => {
         btnTakePlayingCard.disabled = true;
         btnStopGame.disabled = true;
+        btnContinueGame.disabled = true;
         cpuTurn(playerPoints);
     }    
 
@@ -64,16 +68,25 @@ const blackjackModule = (() => {
      */
     const cpuTurn = (minPoints) => {
         for (let i = 1; i < playersPoints.length; i++) {
+            if(playersPoints[i] > 21){
+                continue;
+            }
             let cpuPoints = 0;
 
             do {
                 const playingCard = takePlayingCard();
                 cpuPoints = accumulatePoints(playingCard, i);
                 makePlayingCard(playingCard, i);
-            } while ((cpuPoints < minPoints) && (minPoints <= 21));
-        }
+            } while ((cpuPoints < minPoints) && (minPoints <= 21) && stopGame);
 
-        showWinner();
+        }
+        if(stopGame || playersPoints[0] > 21){
+            showWinner();
+        }else{
+            btnTakePlayingCard.disabled = false;
+            btnStopGame.disabled        = false;
+            btnContinueGame.disabled    = true;
+        }
     }
 
     /**
@@ -175,9 +188,21 @@ const blackjackModule = (() => {
         makePlayingCard(playingCard, 0);
 
         if (playerPoints > 21) stopPlayerTurn(playerPoints);
+
+        btnTakePlayingCard.disabled = true;
+        btnContinueGame.disabled    = false;
+    });
+
+    btnContinueGame.addEventListener('click',() => {
+        if(playersPoints[0] > 0){
+            stopPlayerTurn(playersPoints[0]);
+        }else{
+            alert('Debes agarrar una carta o detener el juego.')
+        }
     });
 
     btnStopGame.addEventListener('click',() => {
+        stopGame = true;
         stopPlayerTurn(playersPoints[0]);
     });
 
