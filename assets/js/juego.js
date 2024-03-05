@@ -68,7 +68,7 @@ const blackjackModule = (() => {
      */
     const cpuTurn = (minPoints) => {
         for (let i = 1; i < playersPoints.length; i++) {
-            if(playersPoints[i] > 21){
+            if(playersPoints[i] >= 21){
                 continue;
             }
             let cpuPoints = 0;
