@@ -116,7 +116,7 @@ body {
 }
 
 #player-container .box .playing-cards img {
-  animation: appearFromLeft 0.7s ease-out;
+  animation: appearFromTop 0.7s ease-out;
 }
 
 #cpu-players-container .box .playing-cards img {
@@ -222,6 +222,11 @@ body {
   #player-container{
     grid-template-columns: repeat(2,1fr);
   }
+
+  #player-container .box .playing-cards img {
+    animation: appearFromLeft 0.7s ease-out;
+  }
+
   .rule div {
     font-size: 2rem;
   }
