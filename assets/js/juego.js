@@ -11,7 +11,6 @@ const blackjackModule = (() => {
           specials             = ['A','J','Q','K'],
           btnTakePlayingCard   = document.querySelector('#btn-take-playing-card'),
           btnStopGame          = document.querySelector('#btn-stop-game'),
-          btnContinueGame      = document.querySelector('#btn-continue-game'),
           btnNewGame           = document.querySelector('#btn-new-game'),
           numPlayersInput      = document.getElementById('num-players');
 
@@ -57,7 +56,6 @@ const blackjackModule = (() => {
     const stopPlayerTurn = (playerPoints) => {
         btnTakePlayingCard.disabled = true;
         btnStopGame.disabled = true;
-        btnContinueGame.disabled = true;
         cpuTurn(playerPoints);
     }    
 
@@ -68,7 +66,7 @@ const blackjackModule = (() => {
      */
     const cpuTurn = (minPoints) => {
         for (let i = 1; i < playersPoints.length; i++) {
-            if(playersPoints[i] >= 21){
+            if(playersPoints[i] >= 19){
                 continue;
             }
             let cpuPoints = 0;
@@ -85,7 +83,6 @@ const blackjackModule = (() => {
         }else{
             btnTakePlayingCard.disabled = false;
             btnStopGame.disabled        = false;
-            btnContinueGame.disabled    = true;
         }
     }
 
@@ -187,18 +184,7 @@ const blackjackModule = (() => {
         const playerPoints = accumulatePoints(playingCard, 0);        
         makePlayingCard(playingCard, 0);
 
-        if (playerPoints > 21) stopPlayerTurn(playerPoints);
-
-        btnTakePlayingCard.disabled = true;
-        btnContinueGame.disabled    = false;
-    });
-
-    btnContinueGame.addEventListener('click',() => {
-        if(playersPoints[0] > 0){
-            stopPlayerTurn(playersPoints[0]);
-        }else{
-            alert('Debes agarrar una carta o detener el juego.')
-        }
+        stopPlayerTurn(playerPoints);
     });
 
     btnStopGame.addEventListener('click',() => {
