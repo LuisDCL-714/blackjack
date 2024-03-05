@@ -66,7 +66,7 @@ const blackjackModule = (() => {
      */
     const cpuTurn = (minPoints) => {
         for (let i = 1; i < playersPoints.length; i++) {
-            if(playersPoints[i] >= 19){
+            if(playersPoints[i] >= 19 && Math.random() <= 0.7){
                 continue;
             }
             let cpuPoints = 0;
